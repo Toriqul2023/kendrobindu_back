@@ -23,23 +23,23 @@ const teacherSchema = new mongoose.Schema({
     type: String,
     default: 'teacher',
   },
-  subjects_taught: {
-    type: [{
+  subjects_taught:[ {
+    
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Subject',  // Referencing the Subject model
-    }],
-    required: true,
-  },
-  assigned_classes: {
-    type: [{
+      ref: 'subject',  // Referencing the Subject model
+   
+    
+  }],
+  assigned_classes:[{
+    
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Class',  // Referencing the Class model
-    }],
+      ref: 'class',  // Referencing the Class model
+   
     default: [],
-  },
+  }],
 }, { timestamps: true });
 
 // Model
-const Teacher = mongoose.models.Teacher || mongoose.model('Teacher', teacherSchema);
+const Teacher = mongoose.models.teacher || mongoose.model('teacher', teacherSchema);
 
 module.exports = Teacher;

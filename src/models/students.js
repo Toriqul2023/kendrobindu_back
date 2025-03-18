@@ -11,10 +11,7 @@ const studentSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  phone: {
-    type: String,
-    required: true,
-  },
+
   password: {
     type: String,
     required: true,
@@ -23,22 +20,12 @@ const studentSchema = new mongoose.Schema({
     type: String,
     default: 'student',
   },
-  class_enrolled: {
-    type: String, // Example: "5" or "6"
-    required: true,
-  },
-  group: {
-    type: String,
-    enum: ['Science', 'Commerce', 'None'], // Group selection for class 9 and 10, default for other classes
-    default: 'None',
-  },
-  subjects: {
-    type: [String], // List of subjects like ['Math', 'Science']
-    default: [],
-  },
+  class_enrolled: { type: mongoose.Schema.Types.ObjectId, ref: 'class', required: true },
+ 
+  
 }, { timestamps: true });
 
 // Student Model
-const Student = mongoose.model('Student', studentSchema);
+const Student = mongoose.model('student', studentSchema);
 
 module.exports = Student;

@@ -1,15 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const teacherController = require('../controller/teacher.controller');
+const express=require('express')
+const router=express.Router()
 
-// Teacher registration
-router.post('/register', teacherController.registerTeacher);
+const teacherRegController=require('../controller/teacherRegistrationController')
+const teacherController=require('../controller/teacher.controller')
 
-// Teacher views their own details
-router.get('/:teacher_id', teacherController.getTeacher);
+router.post('/create',teacherRegController.registerTeacher)
+router.get('/get',teacherController.getallTeacher)
 
-// Teacher can view assigned classes and subjects
-router.get('/:teacher_id/assigned-classes', teacherController.getAssignedClasses);
-router.get('/:teacher_id/assigned-subjects', teacherController.getAssignedSubjects);
-
-module.exports = router;
+module.exports=router
